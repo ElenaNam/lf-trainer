@@ -12,6 +12,14 @@
 		height 250px //временно
 		max-width: 250px
 		max-height: 250px
+		text-align center
+		overflow hidden
+
+
+		img
+			max-width: 100%
+			object-fit: cover
+			cursor move
 
 .variables
 	border 1px solid blue
@@ -20,17 +28,55 @@
 	&__wrapper
 		display flex
 		justify-content space-between
-		align-items center
+		align-items flex-start
+
 
 	&__item
 		border 1px solid green
-		flex-basis: calc(100%/3 - 50px)
+		flex-basis: calc(100%/3 - 30px)
+		text-align center
+		transition: all .3s ease
+
+
+		h3
+			pointer-events: none
+		img
+			max-height: 85px
+			margin 10px
+			//cursor move
+			pointer-events none
+		&.selected
+			box-shadow: 1px 2px 20px rgba(0,0,0,.2)
+
+	&__select
+		pointer-events none
+		li
+			display inline
+
 
 
 @media screen and (max-width: 768px)
 	.variables__wrapper
 		flex-direction: column
+		align-items center
+
 	.variables__item
-		width: 100%
-		max-width 400px
+		flex-basis:100%
 		margin-bottom 50px
+
+		img
+			max-height: 65px
+
+
+	.object__wrapper
+
+		max-width: 200px
+		max-height: 200px
+
+@media screen and (max-width: 480px)
+	.variables__item
+		margin-bottom 30px
+		img
+			max-height 35px
+			margin 5px
+
