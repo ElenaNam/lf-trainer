@@ -1,8 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
-const stylus = require('stylus')
-const autoprefixer = require('autoprefixer-stylus')
+const stylus = require('stylus');
+const autoprefixer = require('autoprefixer-stylus');
 
 module.exports = {
 	entry: {
@@ -11,17 +11,26 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].bundle.js",
+		/* publicPath: "/dist" */
 	},
 	module: {
 		rules: [
 			{
-				test: /\.pug/,
+				test: /\.pug$/,
 				use: "pug-loader",
 			},
 			{
-				test: /\.styl/,
+				test: /\.styl$/,
 				use: ["style-loader", "css-loader", "stylus-loader"],
 			},
+			/* {
+				test:/\.css$/,
+				loader: 'style!css!autoprefixer?browsers=last 2 versions!'
+			},
+			{
+				test:/\.styl$/,
+				loader: 'style!css!autoprefixer?browsers=last 2 versions!stylus?resolve url'
+			}, */
 			{
 				test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
 				use: "file-loader",
