@@ -43,8 +43,19 @@ variables.addEventListener(`dragleave`, (e) => {
 	e.preventDefault()
 	if(e.target.classList.contains('variables__item')){
 		e.target.classList.remove('selected')
+		;
 	}
 })
+
+/* const preventDragging = () => {
+	const selectedImgs = variables.querySelectorAll('img');
+	selectedImgs.forEach(img => {
+		img.addEventListener('dragstart', ()=> {
+			alert('drag')
+			return false;
+		})
+	})
+} */
 
 variables.addEventListener(`drop`, (e) => {
 	e.preventDefault()
@@ -54,12 +65,15 @@ variables.addEventListener(`drop`, (e) => {
 		let li = document.createElement('li')
 		e.target.classList.remove('selected')
 
+
 		const activeElement = document.querySelector(`.selected`);
+
 		ul.appendChild(li)
 		li.append(activeElement)
 
 		showNextImg(pathImgArr)
 		dragImage()
+		/* preventDragging() */
 	}
 })
 

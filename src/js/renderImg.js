@@ -1,8 +1,29 @@
 import {images} from './images.js';
-const imgWrapper = document.getElementById('img');
+import {showResult} from './result';
+export const imgWrapper = document.getElementById('img');
+
+const countWrapper = document.getElementById('count');
+
 
 let usedImages = [];
 let currentIndex = 1;
+let value = 15; // общее число картинок
+let countAll = value; //счетчик всего
+let countCurrent = 1; //счетчик текущий
+
+//увеличить счетчик
+const upCounter = () => {
+	if( countCurrent < countAll)
+	countCurrent ++;
+	return countCurrent;
+}
+//показать счетчик
+const showCounter = (val, countAll) => {
+	countWrapper.innerHTML = `${val}/${countAll}`;
+}
+const removeCounter = () => {
+	countWrapper.innerHTML = '';
+}
 
 //перемешать массив от 1 до n
 const shuffleArr = (n) => {
@@ -31,6 +52,7 @@ const showFirstImg = (arr) => {
 
 	let img = new Image();
 	img.src = arr[0];
+	img.alt = '';
 	imgWrapper.append(img);
 
 	usedImages.push(img.src);
@@ -46,34 +68,27 @@ export const showNextImg = (arr) => {
 		if(i == currentIndex) {
 
 			let img = new Image();
+			img.alt = '';
 			img.src = arr[i];
 			imgWrapper.append(img);
 
+			let countNew = upCounter();
+			showCounter(countNew, countAll)
 		}
 	})
 	if(currentIndex == arr.length){
-		//imgWrapper.innerHTML = '';
-		let p = document.createElement('h3');
-		p.innerHTML = `картинки закончились`;
-		imgWrapper.append(p);
+		showResult();
+		removeCounter();
 	}
 	if (currentIndex < arr.length) currentIndex++
 
 	return;
 }
 
-//клик по картинке
-/* const showImg = () => {
-
-	imgWrapper.addEventListener('click', () => {
-		showNextImg(pathImgArr);
-	})
-} */
-
-let value = 15; // общее число картинок
 let mixedArr = shuffleArr(value); // перемешанный массив
 export let pathImgArr = createImagesArr(mixedArr); // массив с путями картинок
 
 showFirstImg(pathImgArr);
+showCounter(countCurrent, countAll)
 //showImg();
 
