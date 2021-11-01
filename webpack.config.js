@@ -3,13 +3,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const stylus = require('stylus');
 const autoprefixer = require('autoprefixer-stylus');
-
+//const ASSET_PATH = process.env.ASSET_PATH || '/';
 module.exports = {
 	entry: {
 		app: "./src/js/app.js",
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
+		//publicPath: ASSET_PATH,
+		publicPath: '/',
 		filename: "[name].bundle.js",
 		/* publicPath: "/dist" */
 	},
@@ -33,7 +35,13 @@ module.exports = {
 			}, */
 			{
 				test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-				use: "file-loader",
+				use: {
+					loader: "file-loader",
+					options: {
+						name: 'assets/images/[name].[ext]',
+						useRelativePath: true
+					}
+				}
 			},
 			{
 				test: /\.js$|\.es6$/,
@@ -49,6 +57,7 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: path.join(__dirname, "dist"),
+		publicPath: '/',
 		compress: true,
 		open: true,
 	},

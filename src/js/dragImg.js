@@ -1,7 +1,7 @@
 import {showNextImg} from './renderImg.js'
 import {pathImgArr} from './renderImg.js'
 
-const variables = document.querySelector('.variables__wrapper');
+export const variables = document.querySelector('.variables__wrapper');
 const selectedLists = document.querySelectorAll('.variables__item ul');
 
 const dragImage = () => {

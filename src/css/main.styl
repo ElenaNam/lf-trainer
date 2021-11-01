@@ -25,11 +25,13 @@
 		h3
 			text-align: left
 			padding-left: 15px
+			user-select: none
 	.count
 		position: absolute
 		top: 0
 		right: 10px;
 		font-size: 1.6rem
+		user-select: none
 
 .variables
 	border 1px solid blue
@@ -50,17 +52,12 @@
 		*
 			pointer-events: none
 			user-select: none
-			/* -webkit-tap-highlight-color: transparent */
-
-
-		/* h3 */
-
 
 		img
 			max-height: 85px
 			margin 10px
-			//cursor move
-			pointer-events none
+			border 2px solid transparent
+
 		&.selected
 			box-shadow: 1px 2px 20px rgba(0,0,0,.2)
 
@@ -73,15 +70,19 @@
 
 @media screen and (max-width: 768px)
 	.variables__wrapper
-		flex-direction: column
-		align-items center
+		align-items flex-start
 
 	.variables__item
-		flex-basis:100%
+		flex-basis: calc(100%/3 - 10px)
 		margin-bottom 50px
 
 		img
 			max-height: 65px
+			margin 0 0 2px
+
+	.variables__select
+		display flex
+		flex-direction: column
 
 	.object .count
 		font-size 1.2rem
@@ -99,5 +100,5 @@
 		margin-bottom 30px
 		img
 			max-height 35px
-			margin 5px
+			/* margin 5px */
 

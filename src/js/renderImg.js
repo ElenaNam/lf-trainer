@@ -4,6 +4,13 @@ export const imgWrapper = document.getElementById('img');
 
 const countWrapper = document.getElementById('count');
 
+/* let img1 = new Image();
+//let m = require(`../assets/images/2.jpg`);
+//img1.src = require(`../assets/images/2.jpg`);
+img1.src = `../assets/images/2.jpg`;
+
+console.log(img1) */
+
 
 let usedImages = [];
 let currentIndex = 1;
@@ -38,21 +45,22 @@ const createImagesArr = (arr) => {
 
 	let createArr = arr.map((item, i) => {
 		let img = new Image();
-		img.src = require(`../assets/images/${item}.jpg`);
+		//img.src = require(`../assets/images/${item}.jpg`);
+		img.src = `../assets/images/${item}.jpg`;
 		return img.src;
 	})
 
-	//console.log("createArr")
-	//console.log(createArr)
 	return createArr;
 }
 
 //показать первую картинку при загрузке
 const showFirstImg = (arr) => {
-
+	console.log(arr)
+	let val = (arr[0]).match(/\d+(?=.jpg|.png|.jpeg)/)[0] //получить цифру из пути к картинке
 	let img = new Image();
 	img.src = arr[0];
 	img.alt = '';
+	img.setAttribute('data-value', val)
 	imgWrapper.append(img);
 
 	usedImages.push(img.src);
@@ -61,6 +69,7 @@ const showFirstImg = (arr) => {
 //показать следующую картинку
 export const showNextImg = (arr) => {
 	imgWrapper.innerHTML = '';
+	console.log(arr)
 
 	arr.forEach((item, i) => {
 		if(i == 0) return;
@@ -70,7 +79,11 @@ export const showNextImg = (arr) => {
 			let img = new Image();
 			img.alt = '';
 			img.src = arr[i];
+			let val = (arr[i]).match(/\d+(?=.jpg|.png|.jpeg)/)[0] //получить цифру из пути к картинке
+
+			img.setAttribute('data-value', val)
 			imgWrapper.append(img);
+			usedImages.push(img.src);
 
 			let countNew = upCounter();
 			showCounter(countNew, countAll)
@@ -79,9 +92,10 @@ export const showNextImg = (arr) => {
 	if(currentIndex == arr.length){
 		showResult();
 		removeCounter();
+		/* console.log('итоговый массив')
+		console.log(usedImages) */
 	}
 	if (currentIndex < arr.length) currentIndex++
-
 	return;
 }
 
