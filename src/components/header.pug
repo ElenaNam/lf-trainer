@@ -1,3 +1,18 @@
 header.header
 	.container
-		h1 Здесь шапка сайта
+		.header__content
+			.header__brand
+				.header__logo
+					a(href="https://vk.com/lf_samara" target="_blank")
+						include ../modules/svg-logo.pug
+				.header__title
+
+					h1 Волшебный город: символы и знаки
+					.header__subtitle ОНЛАЙН-ТРЕНАЖЕР
+			.header__nav
+				//-button#taskLink.header__btn
+					span  Задание
+					include ../modules/svg-task.pug
+				//-a.header__link(href="/")
+					span Начать заново
+					include ../modules/svg-load.pug

@@ -10,26 +10,46 @@ const dragImage = () => {
 	for (const image of imageAll) {
 		image.draggable = true;
 		//console.log(image)
+		//let imgClone = image.cloneNode();
+		//imgClone.classList.add('clone')
+		//image.parentElement.insertAfter(imgClone, image)
+		//imgClone.style.transform = 'scale(.5)';
+
+		//let clone = new Image();
+
+	/* 	clone.src = 'https://w7.pngwing.com/pngs/289/636/png-transparent-information-info-symbol-circle-black-icon-data-details.png';
+		document.body.appendChild(clone)
+		clone.style.position = "absolute";
+		clone.style.top = "-1000px";
+		clone.style.border = '3px solid blue';
+		clone.style.transform = 'scale(.5)';
+		clone.classList.add('clone') */
 
 		image.addEventListener(`dragstart`, (e) => {
 			e.target.classList.add(`selected`);
+			//console.log(e.dataTransfer)
+			//e.target.style.transform = 'scale(.5)';
+			let value = e.target.getAttribute('src').match(/\d+(?=.jpg|.png|.jpeg)/);
+			//console.log(imgClone)
+			//let imageClone = document.querySelector(`#img img[data-value="${value}"]`);
+
+			//imgClone.classList.add('clone')
+			//let currentClone = image.parentElement.insertBefore(imgClone, image);
+
+		//clone.style.transform = 'scale(.5)'
+
+			//e.dataTransfer.setData('text', e.target.id)
+			//e.dataTransfer.setDragImage(imgClone, 10,10);
 		})
 
 		image.addEventListener(`dragend`, (e) => {
+			//e.dataTransfer.setDragImage(image, 10,10);
 			e.target.classList.remove(`selected`);
+
 		});
 	}
 }
 
-/* variables.forEach(variable => {
-	variable.addEventListener(`dragover`, (e) => {
-
-		// Находим перемещаемый элемент
-		const activeElement = document.querySelector(`.selected`);
-
-		variable.appendChild(activeElement)
-	})
-}) */
 variables.addEventListener(`dragover`, (e) => {
 	e.preventDefault()
 
@@ -42,8 +62,7 @@ variables.addEventListener(`dragover`, (e) => {
 variables.addEventListener(`dragleave`, (e) => {
 	e.preventDefault()
 	if(e.target.classList.contains('variables__item')){
-		e.target.classList.remove('selected')
-		;
+		e.target.classList.remove('selected');
 	}
 })
 
@@ -61,7 +80,7 @@ variables.addEventListener(`drop`, (e) => {
 	e.preventDefault()
 
 	if(e.target.classList.contains('variables__item')) {
-		let ul = e.target.children[1]
+		let ul = e.target.children[0].children[0]
 		let li = document.createElement('li')
 		e.target.classList.remove('selected')
 

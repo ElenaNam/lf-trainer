@@ -2,18 +2,41 @@ main.main
 	.container
 		section.main__inner
 			.main__title
-				h2 Краткая инструкция
+				p Разложи эмблемы и символы разных мест твоего города по 3-м корзинам:
+				ul
+					li
+						include ../modules/svg-marker.pug
+						| в белую положи символы мест, в которых тебе могут оказать помощь
+					li
+						include ../modules/svg-marker.pug
+						| в чёрную положи символы мест, в которых тебя может подстерегать опасность
+					li
+						include ../modules/svg-marker.pug
+						| в серую положи символы мест, в которых результат непредсказуем
 			.object
 				#img.object__wrapper
 				#count.count
+				#result.result.hide
+					.result__success
+					.result__error
 			.variables
 				.variables__wrapper
 					#1.variables__item
-						h4 вариант 1
-						ul.variables__select
+						.variables__inner
+							ul.variables__select
+						//h4 Белые силы
+						//p +
+
+
 					#2.variables__item
-						h4 вариант 2
-						ul.variables__select
+						.variables__inner
+							ul.variables__select
+						//h4 Непредсказуемые силы
+						//p ?
+
 					#3.variables__item
-						h4 вариант 3
-						ul.variables__select
+						.variables__inner
+							ul.variables__select
+						//h4 Тёмные силы
+						//p -
+

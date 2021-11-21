@@ -1,26 +1,47 @@
 .main
 	&__title
-		text-align center
+		padding-bottom 50px
+		color #5b5b5b
+
+		p
+			font-size: 1.4rem
+		ul
+			text-align: left
+		li
+			list-style-type: none
+			padding-bottom 5px
+			font-size: 1.4rem
+
+			svg
+				width 15px
+				height 10px
+				padding-right 5px
+				vertical-align middle
 
 .object
 	position relative
-	border 1px solid red
 
 	&__wrapper
+		position relative
 		margin 0 auto
-		border 1px solid //временно
-		width 250px //временно
-		height 250px //временно
-		max-width: 250px
-		max-height: 250px
+		width: 250px
+		height: 250px
 		text-align center
 		overflow hidden
 
+		&:hover
+			transition: all .3s ease
+			box-shadow: 1px 2px 20px rgba(0,0,0,.2)
 
 		img
 			max-width: 100%
 			object-fit: cover
 			cursor move
+
+			&.clone
+				position absolute
+				border 2px solid red
+				transform scale(.5)
 
 		h3
 			text-align: left
@@ -32,26 +53,64 @@
 		right: 10px;
 		font-size: 1.6rem
 		user-select: none
+	.result
+		margin 0 auto
+		padding: 0 10px
+		max-width: 250px
+		text-align: center
+
+		p
+			font-size: 1.5rem
+
+.result__title
+		text-align: center
+		margin: 30px auto
+		font-size: 1.5rem
+		font-weight bold
+		max-width: 600px
+
 
 .variables
-	border 1px solid blue
 	padding 50px 0
 
 	&__wrapper
 		display flex
 		justify-content space-between
 		align-items flex-start
-
+		column-gap: 10px
 
 	&__item
-		border 1px solid green
 		flex-basis: calc(100%/3 - 30px)
 		text-align center
 		transition: all .3s ease
 
+		&:first-of-type .variables__inner
+			background-image: url(/assets/basket-white.svg)
+		&:nth-of-type(2) .variables__inner
+			background-image: url(/assets/basket-gray.svg)
+		&:last-of-type .variables__inner
+			background-image: url(/assets/basket-black.svg)
+
 		*
 			pointer-events: none
 			user-select: none
+
+		svg
+			position absolute
+			&:after
+				content '+'
+
+		h4
+			//position absolute
+			//top 110%
+			//left: 0
+			//right 0
+			//margin auto
+			margin-top 7px
+		p
+			display none
+			visibility hidden
+			color #e95604
 
 		img
 			max-height: 85px
@@ -59,26 +118,50 @@
 			border 2px solid transparent
 
 		&.selected
-			box-shadow: 1px 2px 20px rgba(0,0,0,.2)
+			box-shadow: 1px 2px 20px rgba(240,240,250,.8)
+			opacity .7
+		&.show
+			.variables__select
+				top 110%
+				li
+					display inline
+	&__inner
+		position relative
+		padding 0 7px
+		min-height 200px
+		text-align center
+		background-position-x: center
+		background-size: contain
+		background-repeat: no-repeat
 
 	&__select
 		pointer-events none
+		position absolute
+		left: 0
+		right 0
+		margin auto
+
 		li
-			display inline
-
-
+			display none
 
 @media screen and (max-width: 768px)
-	.variables__wrapper
-		align-items flex-start
+	.main__title
+		padding-bottom 30px
+		p
+			font-size: 1.2rem
+		li
+			font-size: 1.2rem
 
 	.variables__item
+
 		flex-basis: calc(100%/3 - 10px)
 		margin-bottom 50px
 
 		img
 			max-height: 65px
 			margin 0 0 2px
+	.variables__inner
+		min-height 100px
 
 	.variables__select
 		display flex
@@ -88,17 +171,57 @@
 		font-size 1.2rem
 		right 5px
 
+	.object .result p
+		font-size: 1.3rem
+		margin: 10px 0
+
 	.object__wrapper
-		max-width: 200px
-		max-height: 200px
+		width: 200px
+		height: 200px
+
+	.result__title
+		margin: 30px auto
+		font-size: 1.3rem
+		max-width: 90%
 
 @media screen and (max-width: 480px)
+	.main__title
+		padding-bottom 10px
+		p
+			font-size: 1rem
+		li
+			font-size: 1rem
+
+	.object__wrapper
+		width: 180px
+		height: 180px
 	.object .count
 		font-size 1rem
 		right 3px
+	.object .result p
+		font-size: 1.1rem
+		margin: 10px 0
+	.variables
+		padding 25px 0
 	.variables__item
+		min-height 110px
 		margin-bottom 30px
+		h4
+			display none
+			visibility hidden
+		p
+			display block
+			visibility visible
+			font-size: 1.2rem
+			font-weight: bold
+			margin: .5rem 0
+
 		img
 			max-height 35px
-			/* margin 5px */
+
+	.result__title
+		margin: 20px auto
+		font-size: 1.1rem
+		line-height 1.2
+
 

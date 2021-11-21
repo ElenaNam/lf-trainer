@@ -1,3 +1,126 @@
 .header
 	border 1px solid rgba(0,0,0,.3)
-	text-align center
+
+	&__content
+		display flex
+		justify-content space-between
+		align-items: center
+		column-gap 30px
+
+	&__brand
+		display flex
+		align-items: center
+
+	&__logo
+		border-radius: 100%
+		transition: .3s ease
+		a
+			display block
+		svg
+			width 126px
+			height 126px
+
+		&:hover
+			opacity .9
+		&:active
+			transform: scale(1.1)
+
+	&__title
+		max-width 365px
+		h1
+			margin 0
+
+	&__subtitle
+		padding-top 10px
+		font-size: 1.1rem
+		white-space nowrap
+
+
+	&__nav
+		display flex
+		justify-content space-between
+		align-items: center
+		column-gap 20px
+		max-width 300px
+
+		svg
+			display none
+			visibility hidden
+
+	&__btn
+		padding 15px 10px
+		outline none
+		background: transparent
+		border none
+		font-family: inherit
+		cursor pointer
+
+	&__link
+		text-decoration: none
+
+	&__link, &__btn
+		color black
+		font-size: 1.2rem
+		line-height: 1
+		transition: .3s ease
+
+		&:hover
+			opacity .7
+		&:active
+			transform: scaleX(1.1)
+
+
+@media screen and (max-width: 992px)
+	.header
+		&__logo svg
+			width 100px
+			height 100px
+		&__title h1
+			font-size: 1.7rem
+		&__subtitle
+			font-size: 1.1rem
+		&__nav
+			max-width 280px
+
+@media screen and (max-width: 768px)
+	.header
+		&__content
+			column-gap 30px
+		&__logo svg
+			width 80px
+			height 80px
+		&__title
+			max-width 240px
+			h1
+				font-size: 1.3rem
+		&__subtitle
+			font-size: .8rem
+		&__nav
+			max-width 100px
+			svg
+				display block
+				visibility visible
+				height 23px
+
+		&__link span, &__btn span
+			display none
+			visibility hidden
+
+
+@media screen and (max-width: 480px)
+	.header
+		&__content
+			column-gap 5px
+		&__logo svg
+			width 60px
+			height 60px
+
+		&__subtitle
+			display none
+		&__nav
+			flex-direction: column
+			max-width 40px
+			svg
+				height 20px
+		&__btn
+			padding 7px

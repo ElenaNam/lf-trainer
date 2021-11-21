@@ -1,12 +1,15 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const webpack = require("webpack");
 const stylus = require('stylus');
 const autoprefixer = require('autoprefixer-stylus');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 //const ASSET_PATH = process.env.ASSET_PATH || '/';
 module.exports = {
 	entry: {
 		app: "./src/js/app.js",
+
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
@@ -21,18 +24,12 @@ module.exports = {
 				test: /\.pug$/,
 				use: "pug-loader",
 			},
+
 			{
 				test: /\.styl$/,
-				use: ["style-loader", "css-loader", "stylus-loader"],
+				use: ExtractTextPlugin.extract({fallback: "style-loader", use: ["css-loader", "stylus-loader"]})
 			},
-			/* {
-				test:/\.css$/,
-				loader: 'style!css!autoprefixer?browsers=last 2 versions!'
-			},
-			{
-				test:/\.styl$/,
-				loader: 'style!css!autoprefixer?browsers=last 2 versions!stylus?resolve url'
-			}, */
+
 			{
 				test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
 				use: {
@@ -43,6 +40,7 @@ module.exports = {
 					}
 				}
 			},
+
 			{
 				test: /\.js$|\.es6$/,
 				exclude: /node_modules/,
@@ -69,6 +67,7 @@ module.exports = {
 			// Change there name of main |pug| file
 			template: "./src/index.pug",
 		}),
+		new ExtractTextPlugin("styles.css"),
 		new webpack.optimize.UglifyJsPlugin({}),
 		//new autoprefixer()
 	],
