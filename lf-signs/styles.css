@@ -302,13 +302,13 @@ h4 {
   transition: all 0.3s ease;
 }
 .variables__item:first-of-type .variables__inner {
-  background-image: url(/assets/assets/images/basket-white.svg);
+  background-image: url("/assets/basket-white.svg");
 }
 .variables__item:nth-of-type(2) .variables__inner {
-  background-image: url(/assets/assets/images/basket-gray.svg);
+  background-image: url("/assets/basket-gray.svg");
 }
 .variables__item:last-of-type .variables__inner {
-  background-image: url(/assets/assets/images/basket-black.svg);
+  background-image: url("/assets/basket-black.svg");
 }
 .variables__item * {
   pointer-events: none;
